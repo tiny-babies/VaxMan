@@ -1,7 +1,7 @@
 #Pacman in Python with PyGame
 #https://github.com/hbokmann/Pacman
   
-import pygame._view
+import pygame
   
 black = (0,0,0)
 white = (255,255,255)
@@ -11,7 +11,7 @@ red = (255,0,0)
 purple = (255,0,255)
 yellow   = ( 255, 255,   0)
 
-Trollicon=pygame.image.load('images/Trollman.png')
+Trollicon=pygame.image.load('images/pacman.png')
 pygame.display.set_icon(Trollicon)
 
 #Add music
@@ -96,6 +96,7 @@ def setupGate(all_sprites_list):
       all_sprites_list.add(gate)
       return gate
 
+#Probably wont need the Block class ===============================================================
 # This class represents the ball        
 # It derives from the "Sprite" class in Pygame
 class Block(pygame.sprite.Sprite):
@@ -398,24 +399,24 @@ def startGame():
 
 
   # Create the player paddle object
-  Pacman = Player( w, p_h, "images/Trollman.png" )
+  Pacman = Player( w, p_h, "images/pacman.png" )
   all_sprites_list.add(Pacman)
   pacman_collide.add(Pacman)
-   
+  #================================= EDITED HERE TOO (NOT OPTIMAL) 
   Blinky=Ghost( w, b_h, "images/Blinky.png" )
-  monsta_list.add(Blinky)
+  #monsta_list.add(Blinky)
   all_sprites_list.add(Blinky)
 
   Pinky=Ghost( w, m_h, "images/Pinky.png" )
-  monsta_list.add(Pinky)
+  #monsta_list.add(Pinky)
   all_sprites_list.add(Pinky)
    
   Inky=Ghost( i_w, m_h, "images/Inky.png" )
-  monsta_list.add(Inky)
+  #monsta_list.add(Inky)
   all_sprites_list.add(Inky)
    
   Clyde=Ghost( c_w, m_h, "images/Clyde.png" )
-  monsta_list.add(Clyde)
+  #monsta_list.add(Clyde)
   all_sprites_list.add(Clyde)
 
   # Draw the grid
@@ -526,11 +527,29 @@ def startGame():
 
       if score == bll:
         doNext("Congratulations, you won!",145,all_sprites_list,block_list,monsta_list,pacman_collide,wall_list,gate)
+      #===================================== edit here:
+      monsta_list.add(Blinky)
+      if pygame.sprite.spritecollide(Pacman, monsta_list, False):
+        all_sprites_list.remove(Blinky)
+      monsta_list.remove(Blinky) 
+      monsta_list.add(Inky) 
+      if pygame.sprite.spritecollide(Pacman, monsta_list, False):
+        all_sprites_list.remove(Inky)
+      monsta_list.remove(Inky)
+      monsta_list.add(Clyde)
+      if pygame.sprite.spritecollide(Pacman, monsta_list, False):
+        all_sprites_list.remove(Clyde)
+      monsta_list.remove(Clyde)
+      monsta_list.add(Pinky)
+      if pygame.sprite.spritecollide(Pacman, monsta_list, False):
+        all_sprites_list.remove(Pinky)
+      monsta_list.remove(Pinky)
+      #monsta_hit_list = pygame.sprite.spritecollide(Pacman, monsta_list, False)
 
-      monsta_hit_list = pygame.sprite.spritecollide(Pacman, monsta_list, False)
-
-      if monsta_hit_list:
-        doNext("Game Over",235,all_sprites_list,block_list,monsta_list,pacman_collide,wall_list,gate)
+      #===================================== edit here:
+      #if monsta_hit_list:
+        #all_sprites_list.remove(Pacman)
+        #doNext("Game Over",235,all_sprites_list,block_list,monsta_list,pacman_collide,wall_list,gate)
 
       # ALL CODE TO DRAW SHOULD GO ABOVE THIS COMMENT
       
