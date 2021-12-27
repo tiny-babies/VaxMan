@@ -9,3 +9,5 @@ The original python script also had confusing or poorly-coded logic in some area
 The original version of this Pacman game is here: 
 
 https://github.com/hbokmann/Pacman/
+
+PS: As of right now, I do not have a good way to compile the python script into an executable for the game.  
