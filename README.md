@@ -16,5 +16,9 @@ https://github.com/hbokmann/Pacman/
 ![image](https://user-images.githubusercontent.com/91104605/154908077-aacee132-af07-47cc-87db-410e711b5d73.png)
 ![image](https://user-images.githubusercontent.com/91104605/154908116-9121da32-1e09-4829-91bf-548c14ebddd0.png)
 
+# EA Experience Program
+I made a different implementation of this game to match the EA Experience Program assignment: 
+https://github.com/tiny-babies/EAVaxMan
+
 
 
